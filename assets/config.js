@@ -6,7 +6,7 @@ window.FS_CONFIG = {
   BREVO_FORM_ACTION: "https://d98b5b42.sibforms.com/serve/MUIFACfFbeWsOzZNmG_koxP08RFBCs8YqmXB2V4MGTON2wxZobFO9pNqlHzJ7-mWH1N6dtM0nyKxevLycNZ7dGSY4959lb_9pos1Qoz0_oVaCoOUbqRDp4XMXOsMYPhCfmOPuEJXeq-otaM3xen6uhdj8AHl-dZkAH1LU_bP1KRzYsCIldZ8tKZ0RK5s1WWGdlzJM3PMDiYcQ7Qklg==",
 
   // Google Analytics 4 > Admin > Fluxos de dados > Web > "ID da métrica" (G-XXXXXXXXXX)
-  GA4_ID: "",
+  GA4_ID: "G-D2GD4JCZ4R",
 
   // Opcional (decidimos não usar): ID do pixel da Meta, só números
   META_PIXEL_ID: "",
