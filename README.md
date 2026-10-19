@@ -1,73 +1,78 @@
-# Site do Funil-Social: landing de captura
+# Funil Social: landing page do e-book
 
-Páginas prontas para subir no GitHub Pages em **funilsocial.com.br**.
+Site no ar em **[funilsocial.com.br](https://funilsocial.com.br)**.
 
-| Arquivo | O que é |
-|---------|---------|
-| `index.html` | Landing de captura: e-book grátis por e-mail (Brevo) ou WhatsApp |
-| `obrigado.html` | Tela depois do cadastro: baixar o e-book, entrar no WhatsApp, seguir no Instagram |
-| `privacidade.html` | Política de privacidade (LGPD) |
-| `assets/config.js` | **O único arquivo que você precisa editar** (Brevo, GA4, pixel) |
-| `assets/tracking.js` | Aviso de cookies + GA4 + pixel (só carregam se a pessoa aceitar) |
-| `ebook/prato-cheio-piauiense.pdf` | Cópia do e-book |
-| `CNAME` | Domínio funilsocial.com.br para o GitHub Pages |
+O Funil Social é um projeto de extensão de Teresina-PI que ensina marketing digital para quem tem projetos locais. Para isso, montamos um funil de verdade, do post no Instagram até uma página de doação, e mostramos como cada etapa funciona. **A doação é simulada:** nada é cobrado e nenhum dado de pagamento é pedido.
 
-Sem configurar nada, o site já funciona em "modo demo": o formulário leva para a tela de obrigado, mas não salva o contato.
+Esta landing page é a **etapa 2 do funil**: ela oferece um presente útil (o e-book) e abre a conversa antes de qualquer pedido.
+
+```
+Post no Instagram → Landing do e-book (esta página) → E-mail e WhatsApp → Doação simulada → Agradecimento
+```
+
+## A isca: o e-book
+
+**Prato Cheio Piauiense: 50 receitas da nossa terra.** Receitas do Piauí em 6 categorias, do café à sobremesa, feitas para ler no celular. As receitas com o selo "rende muito" servem 8 pessoas ou mais, ligando o e-book à causa do projeto: a fome e as famílias em situação de vulnerabilidade.
+
+## As páginas
+
+| Página | O que faz |
+|--------|-----------|
+| [`index.html`](index.html) | Apresenta o e-book e pede só o necessário para enviá-lo: nome e e-mail, ou uma mensagem no WhatsApp |
+| [`obrigado.html`](obrigado.html) | Confirma o pedido pelo nome, libera o download e convida para o WhatsApp e o Instagram |
+| [`privacidade.html`](privacidade.html) | Política de privacidade (LGPD): quais dados pedimos, para quê e como pedir para apagar |
+
+## Como a página funciona
+
+**Duas formas de receber.** A pessoa escolhe entre e-mail e WhatsApp. Pelo e-mail, preenche nome e e-mail e marca o consentimento; pelo WhatsApp, abre uma conversa com a mensagem já escrita.
+
+**Consentimento claro.** O formulário só é enviado com a caixa de consentimento marcada, e o texto explica o que a pessoa vai receber e como cancelar. Um campo escondido barra robôs.
+
+**Entrega na hora.** Depois do cadastro, a tela de obrigado chama a pessoa pelo nome e libera o download do e-book. Uma cópia também segue por e-mail.
+
+**Métricas com permissão.** As métricas só começam depois que a pessoa aceita o aviso de cookies. Cada etapa importante vira um evento medido:
+
+| Evento | Quando acontece |
+|--------|-----------------|
+| `page_view` | Abriu qualquer página |
+| `generate_lead` | Pediu o e-book (por e-mail ou WhatsApp) |
+| `file_download` | Baixou o e-book |
+| `click_whatsapp` | Clicou em um botão de WhatsApp |
+| `click_instagram` | Clicou para seguir no Instagram |
+
+## O que dá para aprender com ela
+
+- **Isca digital:** oferecer algo de valor antes de pedir qualquer coisa.
+- **Pedir pouco:** só nome e e-mail, ou nenhum dado no caminho do WhatsApp.
+- **Transparência:** a página explica que é um projeto educativo e mostra em que ponto do funil a pessoa está.
+- **Uma ação por tela:** o botão verde é sempre o próximo passo.
+- **LGPD na prática:** consentimento explícito, política de privacidade e métricas só com permissão.
+- **Medir para melhorar:** cada clique importante vira um número para comparar depois.
+
+## Estrutura
+
+```
+index.html          landing do e-book
+obrigado.html       tela depois do cadastro
+privacidade.html    política de privacidade
+CNAME               domínio funilsocial.com.br
+assets/
+  config.js         configuração central (contatos, links e integrações)
+  tracking.js       aviso de cookies e eventos
+  style.css         visual da página
+  *.png / *.jpg     logo, ícone, capa do e-book e imagem de compartilhamento
+ebook/
+  prato-cheio-piauiense.pdf
+```
+
+Site estático, sem build: HTML, CSS e JavaScript puros, publicado pelo GitHub Pages.
+
+## Identidade
+
+- **Slogan:** Doações que chegam mais longe.
+- **Cores:** off-white `#F4F1E9`, verde `#00C853`, preto `#000000`, cinza `#D8D8D8`
+- **Fontes:** Archivo Black nos títulos, Inter no texto
 
 ---
 
-## Passo a passo (José)
-
-### 1. Brevo: formulário e e-mail de boas-vindas
-> Menus conferidos na central de ajuda do Brevo em 19/10/2026. Os formulários ficam em **Marketing**, não em Contatos.
-
-**Formulário**
-1. Confira em **Contatos > Configurações > Atributos** se existe o atributo `NOME` (já vem pronto na conta em português).
-2. Vá em **Marketing > Formulários** (*Forms*), na aba **Inscrição** (*Sign-up*), e clique em **Criar formulário de inscrição** > **Página inteira / cartão incorporado**.
-3. **Configuração:** dê o nome `Funil Social - e-book` e pode ativar os campos de GDPR/consentimento.
-4. **Design:** deixe os campos **E-mail** e **Nome** (atributo `NOME`). **Não adicione Captcha**, porque o formulário do nosso site é próprio e o Captcha bloqueia o envio.
-5. **Listas:** crie ali mesmo a lista `Leads e-book` e selecione ela.
-6. **Confirmação:** escolha **Sem confirmação**. Quem entrega o e-book é a automação abaixo, então assim a pessoa não recebe dois e-mails.
-7. **Mensagens:** pode deixar o padrão, porque o nosso site mostra a própria tela de obrigado.
-8. **Compartilhar:** escolha **HTML simples** (*Simple HTML*) e procure no código `action="https://....sibforms.com/serve/...."`. Copie esse endereço para `BREVO_FORM_ACTION` no `assets/config.js`, ou mande para o Claude.
-9. Clique em **Concluído** (*Done*). Sem isso o formulário não é salvo.
-
-**E-mail de boas-vindas (automação)**
-1. Vá em **Automações > Fluxos de trabalho** (*Automations > Workflows*) e clique em **Criar uma automação**.
-2. Escolha o modelo pronto **Mensagem de boas-vindas** (*Welcome message*), em português, e clique em **Criar automação**.
-3. **Passo 1 (gatilho):** em **Lista**, selecione `Leads e-book`.
-4. **Passo 2:** apague o **Atraso** (*Time delay*) para o e-mail sair na hora.
-5. **Passo 3 (e-mail):** edite o modelo com o texto de [`../03-email-boas-vindas.md`](../03-email-boas-vindas.md), com o nome em `{{ contact.NOME }}`. Preencha assunto, pré-cabeçalho e remetente, e clique em **Salvar**.
-6. Clique em **Ativar automação**. Só quem entrar na lista depois disso recebe o e-mail.
-7. Teste: preencha o formulário do site com o seu e-mail e veja se chega.
-
-### 2. Google Analytics 4
-Crie a propriedade e o fluxo de dados Web para `funilsocial.com.br`. Copie o ID `G-XXXXXXXXXX` para `GA4_ID`.
-Depois, em **Admin > Eventos**, marque `generate_lead` como **evento principal (conversão)**.
-
-### 3. Pixel da Meta (pulado)
-Decidimos não usar, porque o projeto não roda anúncios. Deixe `META_PIXEL_ID` vazio.
-
-### 4. GitHub Pages com o domínio
-1. Crie um repositório público, por exemplo `funil-social`, e suba **todo o conteúdo desta pasta** (`site/`) na raiz.
-2. **Settings > Pages:** Source = branch `main`, pasta `/ (root)`. Em **Custom domain**, coloque `funilsocial.com.br` e marque **Enforce HTTPS** quando liberar.
-3. No painel onde o domínio foi registrado (Registro.br), crie os registros DNS:
-   - `A` para `@` apontando para `185.199.108.153`, `185.199.109.153`, `185.199.110.153` e `185.199.111.153`
-   - `CNAME` para `www` apontando para `SEU-USUARIO.github.io`
-4. O DNS pode levar algumas horas. Enquanto isso, o site já abre em `SEU-USUARIO.github.io/funil-social`.
-
-### 5. Antes de divulgar
-- [ ] Trocar `[E-MAIL DE CONTATO]` em `privacidade.html` pelo e-mail do projeto
-- [ ] Se o e-book mudar, copiar o PDF novo para `ebook/prato-cheio-piauiense.pdf`
-- [ ] Testar no celular: cadastro por e-mail, e-mail chegando, download, botão do WhatsApp
-- [ ] Conferir no GA4 > Tempo real se `generate_lead` aparece
-
-## Eventos medidos
-
-| Evento GA4 | Pixel | Quando |
-|------------|-------|--------|
-| `page_view` | `PageView` | Abriu qualquer página |
-| `generate_lead` (method: email ou whatsapp) | `Lead` | Pediu o e-book |
-| `file_download` | – | Clicou em baixar o e-book |
-| `click_whatsapp` | `Contact` | Clicou em qualquer botão de WhatsApp |
-| `click_instagram` | – | Clicou para seguir no Instagram |
+🎓 Projeto educativo · Teresina-PI · [Instagram @funil.social](https://instagram.com/funil.social)
