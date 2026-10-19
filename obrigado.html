@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seu e-book chegou | Funil Social</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="assets/icone.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/config.js"></script>
+  <script src="assets/tracking.js"></script>
+</head>
+<body>
+  <div class="aviso">🎓 <strong>Projeto educativo.</strong> Nenhuma doação é cobrada de verdade.</div>
+
+  <header class="topo">
+    <div class="wrap"><a href="index.html"><img src="assets/logo-h.png" alt="Funil Social" width="217" height="52"></a></div>
+  </header>
+
+  <main class="wrap obrigado">
+    <img class="capa" src="assets/capa-ebook.jpg" alt="Capa do e-book Prato Cheio Piauiense" width="540" height="960">
+    <span class="selo verde">Prontinho</span>
+    <h1 id="titulo">Seu <span class="nw">e-book</span> <span class="verde">chegou!</span></h1>
+    <p class="sub">Baixe agora. Uma cópia também está a caminho do seu e-mail (olhe a caixa de promoções se não aparecer).</p>
+
+    <div class="acoes">
+      <a class="btn" id="baixar" href="ebook/prato-cheio-piauiense.pdf" download data-track="file_download">⬇ Baixar o Prato Cheio Piauiense</a>
+      <a class="btn btn-escuro" data-wa="Oi! Baixei o e-book Prato Cheio Piauiense 🍲" data-track="click_whatsapp" data-fb="Contact" target="_blank" rel="noopener">💬 Entrar no nosso WhatsApp</a>
+      <a class="btn btn-ghost" href="https://instagram.com/funil.social" data-track="click_instagram" target="_blank" rel="noopener">Seguir @funil.social</a>
+    </div>
+
+    <p class="miudo">No WhatsApp você recebe dicas, bastidores do projeto e o convite para a próxima etapa do funil.</p>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <img src="assets/logo-h-claro.png" alt="Funil Social" width="184" height="44">
+      <p>Projeto de extensão educativo. A doação no fim do funil é simulada: nada é cobrado.</p>
+      <div class="links"><a href="privacidade.html">Política de privacidade</a></div>
+    </div>
+  </footer>
+
+  <script>
+    var nome = new URLSearchParams(location.search).get("nome");
+    if (nome) {
+      var h = document.getElementById("titulo");
+      h.textContent = nome.slice(0, 30) + ", seu ";
+      var e = document.createElement("span"); e.className = "nw"; e.textContent = "e-book";
+      var s = document.createElement("span"); s.className = "verde"; s.textContent = "chegou!";
+      h.append(e, " ", s);
+    }
+    document.getElementById("baixar").href = (window.FS_CONFIG || {}).EBOOK_URL || "ebook/prato-cheio-piauiense.pdf";
+  </script>
+</body>
+</html>
