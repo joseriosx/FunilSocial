@@ -7,7 +7,7 @@ window.FS_CONFIG = {
 
   // Formulário do Brevo ligado à lista "Doadores demo" (envia o e-mail de agradecimento da doação).
   // Mesmo caminho do de cima: Compartilhar > "HTML simples" > endereço do action. Vazio = não salva o contato.
-  BREVO_DOACAO_ACTION: "",
+  BREVO_DOACAO_ACTION: "https://d98b5b42.sibforms.com/serve/MUIFAGAdStODIPhjfMK5QdBVVDAmRC1Anw0qaqsIGOc8LUQi2x1Bz8zVR-px-v1Fn9bgT1v1e-yAcZn4GMinDG4FjZGeQ-B0tGoruY-6tCdYMnAsJPxaQhF8y1HZpO4YliSRoGUNuvx-MA-c_1RxskdmPCs60Ziq1x2VfyDjdnetstP1jhFeKeO74iaxHrhtYGUSrVV8zcVHS6Q1yw==",
 
   // Google Analytics 4 > Admin > Fluxos de dados > Web > "ID da métrica" (G-XXXXXXXXXX)
   GA4_ID: "G-D2GD4JCZ4R",
