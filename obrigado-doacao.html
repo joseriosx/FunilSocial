@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Obrigado pela doação simulada | Funil Social</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="assets/icone.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/config.js"></script>
+  <script src="assets/tracking.js"></script>
+  <script src="assets/ab.js"></script>
+</head>
+<body>
+  <div class="aviso">🎓 <strong>Projeto educativo.</strong> Nenhuma doação é cobrada de verdade.</div>
+
+  <header class="topo">
+    <div class="wrap"><a href="index.html"><img src="assets/logo-h.png" alt="Funil Social" width="217" height="52"></a></div>
+  </header>
+
+  <main>
+    <section class="wrap obrigado">
+      <span class="selo verde">Funil completo</span>
+      <h1>Obrigado por <span class="verde">chegar até aqui!</span></h1>
+      <p class="sub" id="frase">Sua doação simulada foi registrada. Nenhum valor foi cobrado.</p>
+
+      <div class="acoes">
+        <a class="btn" data-wa="Oi! Fiz a doação simulada no Funil Social 💚" data-track="click_whatsapp" data-fb="Contact" target="_blank" rel="noopener">💬 Contar no nosso WhatsApp</a>
+        <a class="btn btn-ghost" href="https://instagram.com/funil.social" data-track="click_instagram" target="_blank" rel="noopener">Seguir @funil.social</a>
+      </div>
+      <p class="miudo">No WhatsApp a gente conta os resultados do projeto e qual versão da página ganhou o teste A/B.</p>
+    </section>
+
+    <section class="bloco escuro">
+      <div class="wrap centro">
+        <span class="selo verde">Um jeito real de ajudar</span>
+        <h2>A doação era simulada. <span class="verde">A fome não é.</span></h2>
+        <ul class="ajudar">
+          <li><strong>Doe alimentos</strong> para um banco de alimentos, uma cozinha solidária ou uma ação da sua igreja ou do seu bairro em Teresina. Pergunte antes o que estão precisando.</li>
+          <li><strong>Doe o seu tempo</strong> como voluntário em quem já faz esse trabalho.</li>
+          <li><strong>Compartilhe</strong> quem ajuda de verdade na sua cidade.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bloco">
+      <div class="wrap" style="max-width:760px">
+        <span class="selo verde">Bastidor</span>
+        <h2>O que acabou de <span class="verde">acontecer</span></h2>
+        <p>Você passou por todas as etapas de um funil: viu o conteúdo, conheceu o projeto, escolheu um valor e chegou até o agradecimento. Cada passo virou um número anônimo que vamos mostrar na apresentação.</p>
+        <p>Esta tela também é uma técnica: agradecer na hora e já convidar para a próxima conversa, em vez de deixar a pessoa num beco sem saída.</p>
+        <p style="margin-top:24px"><a class="btn btn-ghost" href="index.html">Voltar ao início</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <img src="assets/logo-h-claro.png" alt="Funil Social" width="184" height="44">
+      <p>Projeto de extensão educativo. A doação no fim do funil é simulada: nada é cobrado.</p>
+      <div class="links"><a href="privacidade.html">Política de privacidade</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var item = q.get("item"), valor = parseInt(q.get("valor"), 10), metodo = q.get("metodo");
+      if (!valor || valor < 5) return;
+      var oQue = item === "marmita" ? "1 marmita, um almoço quentinho"
+        : item === "cesta" ? "1 cesta básica para uma família"
+        : Math.floor(valor / 15) >= 1 ? Math.floor(valor / 15) + (Math.floor(valor / 15) === 1 ? " marmita" : " marmitas")
+        : "parte de uma marmita";
+      var como = metodo === "pix" ? " por PIX" : metodo === "cartao" ? " no cartão" : "";
+      document.getElementById("frase").textContent =
+        "Se fosse de verdade, os seus R$ " + valor.toLocaleString("pt-BR") + como + " virariam " + oQue + ". Como é uma simulação, nenhum valor foi cobrado.";
+    })();
+  </script>
+</body>
+</html>

@@ -33,13 +33,27 @@
     fbq("track", "PageView");
   }
 
-  function startTracking() { loadGA4(); loadPixel(); }
+  // Eventos disparados antes do aceite ficam guardados e só são enviados se a pessoa aceitar.
+  var fila = [];
+
+  function startTracking() {
+    loadGA4(); loadPixel();
+    fila.splice(0).forEach(function (ev) { fsTrack.apply(null, ev); });
+  }
 
   // Evento único para GA4 e pixel. ga = nome no GA4, fb = nome padrão do pixel (opcional).
+  // Parâmetros em window.FS_EVENT_PARAMS (ex.: a variante do teste A/B) vão junto em todo evento.
   window.fsTrack = function (ga, params, fb) {
-    if (window.gtag) gtag("event", ga, params || {});
+    var p = {}, extra = window.FS_EVENT_PARAMS || {}, k;
+    for (k in extra) p[k] = extra[k];
+    for (k in params || {}) p[k] = params[k];
+    if (!window.gtag && !window.fbq && getConsent() === null && (C.GA4_ID || C.META_PIXEL_ID)) {
+      fila.push([ga, params, fb]);
+      return;
+    }
+    if (window.gtag) gtag("event", ga, p);
     if (window.fbq && fb) fbq("track", fb);
-    if (!C.GA4_ID && !C.META_PIXEL_ID) console.info("[demo] evento:", ga, params || {});
+    if (!C.GA4_ID && !C.META_PIXEL_ID) console.info("[demo] evento:", ga, p);
   };
 
   function showBanner() {

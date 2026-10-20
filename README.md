@@ -20,6 +20,8 @@ Post no Instagram → Landing do e-book (esta página) → E-mail e WhatsApp →
 |--------|-----------|
 | [`index.html`](index.html) | Apresenta o e-book e pede só o necessário para enviá-lo: nome e e-mail, ou uma mensagem no WhatsApp |
 | [`obrigado.html`](obrigado.html) | Confirma o pedido pelo nome, libera o download e convida para o WhatsApp e o Instagram |
+| [`doar.html`](doar.html) | Página de doação **simulada** (etapa 4), com teste A/B, PIX e cartão de demonstração |
+| [`obrigado-doacao.html`](obrigado-doacao.html) | Agradece, mostra o que a doação viraria, indica um jeito real de ajudar e convida para o WhatsApp |
 | [`privacidade.html`](privacidade.html) | Política de privacidade (LGPD): quais dados pedimos, para quê e como pedir para apagar |
 
 ## Como a página funciona
@@ -39,6 +41,22 @@ Post no Instagram → Landing do e-book (esta página) → E-mail e WhatsApp →
 | `file_download` | Baixou o e-book |
 | `click_whatsapp` | Clicou em um botão de WhatsApp |
 | `click_instagram` | Clicou para seguir no Instagram |
+| `ab_view` | Abriu a página de doação (com a versão vista) |
+| `select_item` | Escolheu marmita, cesta ou outro valor |
+| `begin_checkout` | Clicou em "Quero doar": **é a métrica do teste A/B** |
+| `add_payment_info` | Escolheu PIX ou cartão |
+| `doacao_simulada` | Concluiu a doação simulada |
+
+Todo evento das páginas de doação leva o parâmetro `variante` (`a` ou `b`).
+
+## O teste A/B da doação
+
+Só uma coisa muda entre as versões, para dar para saber o que fez diferença:
+
+- **Versão A:** as opções mostram o valor em reais (R$ 15 marmita, R$ 90 cesta básica, outro valor a partir de R$ 5).
+- **Versão B:** as opções mostram o que a doação vira (1 almoço quentinho, comida para uma família, "R$ 40 = 2 marmitas").
+
+Cada pessoa cai numa versão por sorteio e vê sempre a mesma. Para abrir uma versão de propósito: `doar.html?v=a` ou `doar.html?v=b`. Ganha a versão com a maior taxa de `begin_checkout` ÷ `ab_view`.
 
 ## O que dá para aprender com ela
 
@@ -54,11 +72,14 @@ Post no Instagram → Landing do e-book (esta página) → E-mail e WhatsApp →
 ```
 index.html          landing do e-book
 obrigado.html       tela depois do cadastro
+doar.html           doação simulada com teste A/B
+obrigado-doacao.html agradecimento depois da doação
 privacidade.html    política de privacidade
 CNAME               domínio funilsocial.com.br
 assets/
   config.js         configuração central (contatos, links e integrações)
   tracking.js       aviso de cookies e eventos
+  ab.js             sorteio da versão A/B da doação
   style.css         visual da página
   *.png / *.jpg     logo, ícone, capa do e-book e imagem de compartilhamento
 ebook/

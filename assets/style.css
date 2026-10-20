@@ -203,3 +203,50 @@ footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin: 18px 0; }
   .passos { grid-template-columns: 1fr; }
   .card { max-width: none; }
 }
+
+/* Doação (simulada) com teste A/B */
+[data-ab="a"] .so-b, [data-ab="b"] .so-a { display: none !important; }
+.doar-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+.doar-grid > * { min-width: 0; }
+.doar h1 { margin-top: .2em; }
+.card-doar { max-width: 520px; justify-self: end; width: 100%; scroll-margin-top: 16px; }
+.card-titulo { font-size: 1.2rem; text-transform: uppercase; margin-bottom: 16px; }
+.opcoes { display: grid; gap: 12px; }
+.opcao { display: flex; gap: 14px; align-items: center; margin: 0; padding: 16px; border: 2px solid var(--preto); border-radius: 14px; background: var(--off); cursor: pointer; font-weight: 400; }
+.opcao input { width: 20px; height: 20px; accent-color: var(--preto); flex: none; margin: 0; }
+.opcao:has(input:checked) { background: var(--verde); box-shadow: 4px 4px 0 var(--preto); }
+.opcao:has(input:focus-visible) { outline: 3px solid var(--verde); outline-offset: 2px; }
+.opcao-corpo > span { display: flex; flex-direction: column; gap: 2px; }
+.opcao .grande { font-family: "Archivo Black", sans-serif; font-weight: 400; font-size: 1.35rem; line-height: 1.1; }
+.opcao .peq { font-size: .88rem; color: var(--suave); }
+.opcao:has(input:checked) .peq { color: var(--preto); }
+.livre label { margin-top: 4px; }
+.campo-reais { display: flex; align-items: center; gap: 8px; }
+.campo-reais span { font-weight: 800; }
+.campo-reais input { max-width: 180px; }
+.impacto { font-weight: 700; margin: 8px 0 0; min-height: 1.3em; }
+.resumo { margin: 0 0 14px; }
+.link { background: none; border: 0; padding: 0; font: inherit; text-decoration: underline; cursor: pointer; color: var(--suave); }
+.alerta { background: var(--off); border: 2px dashed var(--preto); border-radius: 12px; padding: 10px 12px; font-size: .9rem; margin: 0 0 16px; }
+.centro { text-align: center; }
+.qr, .cartao-demo { position: relative; margin: 6px auto 0; }
+.qr { width: 190px; padding: 12px; background: #fff; border: 2px solid var(--preto); border-radius: 12px; }
+.qr svg { display: block; width: 100%; height: auto; opacity: .35; }
+.carimbo {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-14deg);
+  font-family: "Archivo Black", sans-serif; font-size: 1.15rem; letter-spacing: .06em;
+  background: var(--verde); color: var(--preto); border: 3px solid var(--preto); border-radius: 8px; padding: 4px 10px; white-space: nowrap;
+}
+.copia { display: flex; gap: 8px; align-items: center; margin-top: 14px; }
+.copia code { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .8rem; background: var(--off); border: 2px solid var(--cinza); border-radius: 10px; padding: 10px; }
+.copia .btn { padding: 8px 14px; font-size: .9rem; }
+.cartao-demo { display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1.586; max-width: 320px; padding: 18px; border-radius: 16px; background: var(--preto); color: var(--off); font-family: ui-monospace, monospace; margin-bottom: 12px; }
+.cartao-demo .chip { width: 38px; height: 28px; border-radius: 6px; background: var(--cinza); }
+.cartao-demo .num { font-size: 1.15rem; letter-spacing: .08em; }
+.cartao-demo .linha { display: flex; justify-content: space-between; font-size: .72rem; }
+.ajudar { text-align: left; max-width: 560px; margin: 0 auto; }
+.ajudar li { margin: 8px 0; }
+@media (max-width: 860px) {
+  .doar-grid { grid-template-columns: 1fr; gap: 20px; }
+  .card-doar { justify-self: stretch; max-width: none; }
+}

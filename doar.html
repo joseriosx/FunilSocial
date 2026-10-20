@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doe um prato cheio (simulação) | Funil Social</title>
+  <meta name="description" content="Etapa final do funil do Funil Social: uma página de doação simulada, com teste A/B. Nada é cobrado.">
+  <meta property="og:title" content="Doe um prato cheio (simulação educativa)">
+  <meta property="og:description" content="Veja como funciona uma página de doação de verdade. É uma simulação: nada é cobrado.">
+  <meta property="og:image" content="assets/og.jpg">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="assets/icone.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/config.js"></script>
+  <script src="assets/tracking.js"></script>
+  <script src="assets/ab.js"></script>
+</head>
+<body>
+
+  <div class="aviso">🎓 <strong>Projeto educativo.</strong> Nenhuma doação é cobrada de verdade.</div>
+
+  <header class="topo">
+    <div class="wrap"><a href="index.html"><img src="assets/logo-h.png" alt="Funil Social" width="217" height="52"></a></div>
+  </header>
+
+  <main>
+    <section class="hero doar">
+      <div class="wrap doar-grid">
+        <div>
+          <span class="selo verde">Prato Cheio · Teresina-PI</span>
+          <h1>Doe um <span class="verde">prato cheio</span></h1>
+          <p class="sub">Em Teresina, muitas famílias ainda não sabem se vai ter almoço amanhã. Escolha como quer ajudar.</p>
+        </div>
+
+        <div class="card card-doar">
+          <!-- PASSO 1: escolher o valor -->
+          <form id="passo1" novalidate>
+            <h2 class="card-titulo">1. Escolha a sua doação</h2>
+            <div class="opcoes" role="radiogroup" aria-label="Valor da doação">
+
+              <label class="opcao">
+                <input type="radio" name="item" value="marmita" data-valor="15">
+                <span class="opcao-corpo">
+                  <span class="so-a"><strong class="grande">R$ 15</strong><span class="peq">Marmita</span></span>
+                  <span class="so-b"><strong class="grande">1 almoço quentinho</strong><span class="peq">uma marmita · R$ 15</span></span>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="item" value="cesta" data-valor="90">
+                <span class="opcao-corpo">
+                  <span class="so-a"><strong class="grande">R$ 90</strong><span class="peq">Cesta básica</span></span>
+                  <span class="so-b"><strong class="grande">Comida para uma família</strong><span class="peq">uma cesta básica com arroz, feijão, farinha, óleo, macarrão, açúcar e café · R$ 90</span></span>
+                </span>
+              </label>
+
+              <label class="opcao">
+                <input type="radio" name="item" value="livre" data-valor="">
+                <span class="opcao-corpo">
+                  <span class="so-a"><strong class="grande">Outro valor</strong><span class="peq">a partir de R$ 5</span></span>
+                  <span class="so-b"><strong class="grande">Você escolhe o tamanho</strong><span class="peq">a partir de R$ 5</span></span>
+                </span>
+              </label>
+
+              <div class="livre" id="livre" hidden>
+                <label for="valor-livre">Quanto você quer doar?</label>
+                <div class="campo-reais"><span>R$</span><input id="valor-livre" type="text" inputmode="numeric" autocomplete="off" placeholder="30"></div>
+                <p class="impacto so-b" id="impacto" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <p class="erro" id="erro1" role="alert"></p>
+            <button class="btn btn-full" type="submit" id="quero-doar">Quero doar</button>
+          </form>
+
+          <!-- PASSO 2: forma de pagamento (simulada) -->
+          <div id="passo2" hidden>
+            <h2 class="card-titulo">2. Como você quer doar?</h2>
+            <p class="resumo">Sua doação: <strong id="resumo"></strong> <button type="button" class="link" id="trocar">trocar</button></p>
+
+            <p class="alerta">⚠️ <strong>Simulação:</strong> nenhum valor será cobrado. Clique para ver como funciona o fim do funil.</p>
+
+            <div class="abas" role="tablist" aria-label="Forma de pagamento">
+              <button class="aba" role="tab" aria-selected="false" aria-controls="painel-pix" id="aba-pix" type="button">PIX</button>
+              <button class="aba" role="tab" aria-selected="false" aria-controls="painel-cartao" id="aba-cartao" type="button">Cartão</button>
+            </div>
+
+            <div id="painel-pix" role="tabpanel" aria-labelledby="aba-pix" hidden>
+              <div class="qr">
+                <svg id="qr" viewBox="0 0 29 29" aria-hidden="true" shape-rendering="crispEdges"></svg>
+                <span class="carimbo">SIMULAÇÃO</span>
+              </div>
+              <p class="miudo centro">Este QR Code é só um desenho: ele não é um PIX e não leva a lugar nenhum.</p>
+              <div class="copia">
+                <code id="codigo">FUNIL-SOCIAL-SIMULACAO-NADA-E-COBRADO</code>
+                <button type="button" class="btn btn-ghost" id="copiar">Copiar</button>
+              </div>
+              <button class="btn btn-full" type="button" data-pagar="pix">Simular pagamento por PIX</button>
+            </div>
+
+            <div id="painel-cartao" role="tabpanel" aria-labelledby="aba-cartao" hidden>
+              <div class="cartao-demo" aria-hidden="true">
+                <span class="chip"></span>
+                <span class="num">0000 0000 0000 0000</span>
+                <span class="linha"><span>CARTÃO DE DEMONSTRAÇÃO</span><span>00/00</span></span>
+                <span class="carimbo">SIMULAÇÃO</span>
+              </div>
+              <p class="miudo">Numa página de verdade, os dados do cartão seriam digitados dentro do ambiente seguro de uma plataforma de pagamento. <strong>Aqui não pedimos nenhum dado.</strong></p>
+              <button class="btn btn-full" type="button" data-pagar="cartao">Simular pagamento com cartão</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BASTIDOR -->
+    <section class="bloco escuro">
+      <div class="wrap">
+        <span class="selo verde">Bastidor</span>
+        <h2>Você está no <span class="verde">fundo do funil</span></h2>
+        <p>Só agora, depois do conteúdo e do e-book, vem o pedido. Esta página tem duas versões (teste A/B): metade das pessoas vê os valores em reais, a outra metade vê o que a doação vira. A gente mede qual faz mais gente clicar em "Quero doar".</p>
+        <p>Você está vendo a <strong class="verde">versão <span id="letra">A</span></strong>.</p>
+        <ol class="passos">
+          <li>Post no Instagram</li>
+          <li>Página do e-book</li>
+          <li>E-mail e WhatsApp automáticos</li>
+          <li class="aqui">Doação simulada (você está aqui)</li>
+          <li>Agradecimento e métricas</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="bloco">
+      <div class="wrap" style="max-width:760px">
+        <h2>Perguntas <span class="verde">rápidas</span></h2>
+        <details><summary>Vou pagar alguma coisa?</summary><p>Não. É um projeto educativo e esta página é uma simulação. Os botões de PIX e cartão não processam pagamentos e não pedem dados bancários, de cartão ou CPF.</p></details>
+        <details><summary>Então por que essa página existe?</summary><p>Para mostrar, na prática, como funciona a última etapa de um funil de doação, e testar qual versão da página convence mais.</p></details>
+        <details><summary>Quero ajudar de verdade. Como faço?</summary><p>Procure um banco de alimentos, uma cozinha solidária ou uma ação da sua igreja ou do seu bairro em Teresina. Doar alimentos e tempo como voluntário faz muita diferença.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <img src="assets/logo-h-claro.png" alt="Funil Social" width="184" height="44">
+      <p><strong>Sobre o Funil Social.</strong> Um projeto de extensão que ensina técnicas de marketing digital a quem tem projetos locais. <strong>A doação é simulada:</strong> nada é cobrado e nenhum dado de pagamento é pedido.</p>
+      <div class="links">
+        <a href="privacidade.html">Política de privacidade</a>
+        <a data-track="click_instagram" href="https://instagram.com/funil.social" target="_blank" rel="noopener">Instagram @funil.social</a>
+        <a data-track="click_whatsapp" data-fb="Contact" data-wa="Oi! Vim pela página de doação do Funil Social." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <p>Teresina-PI · Doações que chegam mais longe.</p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var V = window.FS_AB;
+    var PRECO_MARMITA = 15, MINIMO = 5;
+    document.getElementById("letra").textContent = V.toUpperCase();
+
+    // Conta uma visita por variante (é a base do teste A/B).
+    document.addEventListener("DOMContentLoaded", function () { fsTrack("ab_view", {}); });
+
+    var form = document.getElementById("passo1"), erro = document.getElementById("erro1");
+    var livre = document.getElementById("livre"), campo = document.getElementById("valor-livre");
+    var impacto = document.getElementById("impacto");
+    var escolha = null;
+
+    function reais(n) { return "R$ " + n.toLocaleString("pt-BR"); }
+    function lerLivre() { var n = parseInt(campo.value.replace(/\D/g, ""), 10); return isNaN(n) ? 0 : n; }
+    function descreve(item, valor) {
+      if (item === "marmita") return reais(valor) + " · 1 marmita";
+      if (item === "cesta") return reais(valor) + " · 1 cesta básica";
+      return reais(valor);
+    }
+    function marmitas(valor) {
+      var m = Math.floor(valor / PRECO_MARMITA);
+      if (m < 1) return "= parte de uma marmita";
+      return "= " + m + (m === 1 ? " marmita" : " marmitas") + " (" + (m === 1 ? "1 almoço" : m + " almoços") + ")";
+    }
+
+    form.addEventListener("change", function (e) {
+      if (e.target.name !== "item") return;
+      erro.textContent = "";
+      livre.hidden = e.target.value !== "livre";
+      if (!livre.hidden) campo.focus();
+      fsTrack("select_item", { item_name: e.target.value });
+    });
+    campo.addEventListener("input", function () {
+      campo.value = campo.value.replace(/\D/g, "").slice(0, 5);
+      var n = lerLivre();
+      impacto.textContent = n >= MINIMO ? marmitas(n) : "";
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var r = form.querySelector("input[name=item]:checked");
+      if (!r) { erro.textContent = "Escolha uma das opções."; return; }
+      var valor = r.value === "livre" ? lerLivre() : parseInt(r.getAttribute("data-valor"), 10);
+      if (r.value === "livre" && valor < MINIMO) { erro.textContent = "O valor mínimo é R$ 5."; campo.focus(); return; }
+      escolha = { item: r.value, valor: valor };
+      fsTrack("begin_checkout", { currency: "BRL", value: valor, item_name: r.value });
+      document.getElementById("resumo").textContent = descreve(r.value, valor);
+      form.hidden = true;
+      document.getElementById("passo2").hidden = false;
+      document.querySelector(".card-doar").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.getElementById("trocar").onclick = function () {
+      document.getElementById("passo2").hidden = true;
+      form.hidden = false;
+    };
+
+    // Abas PIX / cartão
+    var abas = { pix: document.getElementById("aba-pix"), cartao: document.getElementById("aba-cartao") };
+    var paineis = { pix: document.getElementById("painel-pix"), cartao: document.getElementById("painel-cartao") };
+    function abrir(qual) {
+      Object.keys(abas).forEach(function (k) {
+        abas[k].setAttribute("aria-selected", k === qual);
+        paineis[k].hidden = k !== qual;
+      });
+      fsTrack("add_payment_info", { currency: "BRL", value: escolha.valor, payment_type: qual });
+    }
+    abas.pix.onclick = function () { abrir("pix"); };
+    abas.cartao.onclick = function () { abrir("cartao"); };
+
+    // QR Code de enfeite: um desenho com os 3 cantos de um QR, sem nenhum conteúdo.
+    (function desenhaQR() {
+      var svg = document.getElementById("qr"), n = 29, d = "", seed = 7;
+      function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+      function canto(x, y) { return x < 8 && y < 8 || x > n - 9 && y < 8 || x < 8 && y > n - 9; }
+      for (var y = 0; y < n; y++) for (var x = 0; x < n; x++) if (!canto(x, y) && rnd() < 0.48) d += "M" + x + " " + y + "h1v1h-1z";
+      [[0, 0], [n - 7, 0], [0, n - 7]].forEach(function (p) {
+        d += "M" + p[0] + " " + p[1] + "h7v7h-7zM" + (p[0] + 1) + " " + (p[1] + 1) + "v5h5v-5zM" + (p[0] + 2) + " " + (p[1] + 2) + "h3v3h-3z";
+      });
+      svg.innerHTML = '<path fill-rule="evenodd" d="' + d + '"/>';
+    })();
+
+    document.getElementById("copiar").onclick = function () {
+      var b = this, t = document.getElementById("codigo").textContent;
+      var ok = function () { b.textContent = "Copiado!"; setTimeout(function () { b.textContent = "Copiar"; }, 1500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(ok, ok); else ok();
+    };
+
+    document.querySelectorAll("[data-pagar]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var metodo = b.getAttribute("data-pagar");
+        b.disabled = true;
+        b.textContent = "Processando a simulação...";
+        fsTrack("doacao_simulada", { currency: "BRL", value: escolha.valor, item_name: escolha.item, payment_type: metodo });
+        setTimeout(function () {
+          location.href = "obrigado-doacao.html?item=" + escolha.item + "&valor=" + escolha.valor + "&metodo=" + metodo;
+        }, 900);
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
