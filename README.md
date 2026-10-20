@@ -1,13 +1,13 @@
-# Funil Social: landing page do e-book
+# Funil Social: site do projeto
 
 Site no ar em **[funilsocial.com.br](https://funilsocial.com.br)**.
 
 O Funil Social é um projeto de extensão de Teresina-PI que ensina marketing digital para quem tem projetos locais. Para isso, montamos um funil de verdade, do post no Instagram até uma página de doação, e mostramos como cada etapa funciona. **A doação é simulada:** nada é cobrado e nenhum dado de pagamento é pedido.
 
-Esta landing page é a **etapa 2 do funil**: ela oferece um presente útil (o e-book) e abre a conversa antes de qualquer pedido.
+A página do e-book é a **etapa 2 do funil**: ela oferece um presente útil (o e-book) e abre a conversa antes de qualquer pedido.
 
 ```
-Post no Instagram → Landing do e-book (esta página) → E-mail e WhatsApp → Doação simulada → Agradecimento
+Post no Instagram → Landing do e-book → E-mail e WhatsApp → Doação simulada → Agradecimento
 ```
 
 ## A isca: o e-book
@@ -18,7 +18,8 @@ Post no Instagram → Landing do e-book (esta página) → E-mail e WhatsApp →
 
 | Página | O que faz |
 |--------|-----------|
-| [`index.html`](index.html) | Apresenta o e-book e pede só o necessário para enviá-lo: nome e e-mail, ou uma mensagem no WhatsApp |
+| [`index.html`](index.html) | Página inicial: o que é o projeto, as 5 etapas do funil, o que você aprende e a causa |
+| [`e-book.html`](e-book.html) | Apresenta o e-book e pede só o necessário para enviá-lo: nome e e-mail, ou uma mensagem no WhatsApp |
 | [`obrigado.html`](obrigado.html) | Confirma o pedido pelo nome, libera o download e convida para o WhatsApp e o Instagram |
 | [`doar.html`](doar.html) | Página de doação **simulada** (etapa 4), com teste A/B, PIX e cartão de demonstração |
 | [`obrigado-doacao.html`](obrigado-doacao.html) | Agradece, mostra o que a doação viraria, indica um jeito real de ajudar e convida para o WhatsApp |
@@ -70,7 +71,8 @@ Cada pessoa cai numa versão por sorteio e vê sempre a mesma. Para abrir uma ve
 ## Estrutura
 
 ```
-index.html          landing do e-book
+index.html          página inicial do projeto
+e-book.html         landing do e-book
 obrigado.html       tela depois do cadastro
 doar.html           doação simulada com teste A/B
 obrigado-doacao.html agradecimento depois da doação

@@ -206,10 +206,25 @@ footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin: 18px 0; }
 
 /* Doação (simulada) com teste A/B */
 [data-ab="a"] .so-b, [data-ab="b"] .so-a { display: none !important; }
-.doar-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+.doar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 .doar-grid > * { min-width: 0; }
 .doar h1 { margin-top: .2em; }
 .card-doar { max-width: 520px; justify-self: end; width: 100%; scroll-margin-top: 16px; }
+.doar .sub { font-size: 1.1rem; color: var(--suave); max-width: 30em; margin-bottom: 28px; }
+.tres-passos { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 18px; }
+.tres-passos li { display: flex; gap: 16px; align-items: flex-start; }
+.tres-passos .n, .funil .n, .etapa .n {
+  flex: none; display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  font-family: "Archivo Black", sans-serif; font-size: 1.05rem; background: var(--preto); color: var(--off);
+}
+.tres-passos strong { display: block; font-size: 1.02rem; }
+.tres-passos span { color: var(--suave); font-size: .95rem; }
+.garantias { list-style: none; padding: 18px 0 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; border-top: 2px solid var(--preto); }
+.garantias li { padding-left: 26px; position: relative; font-weight: 600; font-size: .92rem; }
+.garantias li::before {
+  content: ""; position: absolute; left: 0; top: .15em; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--verde) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
+}
 .card-titulo { font-size: 1.2rem; text-transform: uppercase; margin-bottom: 16px; }
 .opcoes { display: grid; gap: 12px; }
 .opcao { display: flex; gap: 14px; align-items: center; margin: 0; padding: 16px; border: 2px solid var(--preto); border-radius: 14px; background: var(--off); cursor: pointer; font-weight: 400; }
@@ -249,4 +264,62 @@ footer .links { display: flex; flex-wrap: wrap; gap: 18px; margin: 18px 0; }
 @media (max-width: 860px) {
   .doar-grid { grid-template-columns: 1fr; gap: 20px; }
   .card-doar { justify-self: stretch; max-width: none; }
+}
+
+/* Página do projeto */
+.topo-flex { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.menu { display: flex; gap: 26px; font-weight: 600; font-size: .95rem; }
+.menu a { text-decoration: none; border-bottom: 2px solid transparent; padding: 4px 0; }
+.menu a:hover { border-color: var(--verde); }
+.hero-acoes { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 0; }
+.centro-flex { justify-content: center; }
+.funil { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; justify-items: center; }
+.funil li {
+  display: flex; align-items: center; gap: 14px; padding: 12px 18px; border-radius: 14px;
+  background: #fff; border: 3px solid var(--preto); font-weight: 700; box-shadow: 6px 6px 0 var(--preto);
+}
+.funil li:nth-child(1) { width: 100%; }
+.funil li:nth-child(2) { width: 90%; }
+.funil li:nth-child(3) { width: 80%; }
+.funil li:nth-child(4) { width: 70%; }
+.funil li:nth-child(5) { width: 60%; }
+.funil li.fim { background: var(--verde); }
+.cabeca { max-width: 640px; margin-bottom: 36px; }
+.cabeca p { margin: 0; }
+.etapas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.etapa {
+  display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--off);
+  background: #111; border: 2px solid #333; border-radius: var(--raio); padding: 20px; transition: border-color .15s, transform .15s;
+}
+a.etapa:hover { border-color: var(--verde); transform: translateY(-3px); }
+.etapa .n { background: var(--verde); color: var(--preto); }
+.etapa .fase { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #9a958c; margin-top: 6px; }
+.etapa h3 { margin: 0; color: var(--off); }
+.escuro .etapa p { margin: 0; font-size: .92rem; flex: 1; }
+.etapa .ver { font-weight: 700; font-size: .9rem; color: var(--verde); }
+.etapa .ver.mudo { color: #9a958c; }
+.tecnicas .item { display: flex; flex-direction: column; gap: 6px; box-shadow: 6px 6px 0 var(--preto); }
+.tecnicas .item h3, .tecnicas .item p { margin: 0; }
+.tecnicas .item p { color: var(--suave); font-size: .95rem; }
+.ico { font-family: "Archivo Black", sans-serif; font-size: 1.6rem; color: var(--verde); line-height: 1; margin-bottom: 6px; }
+.ajuda-lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ajuda-lista li { background: #111; border: 2px solid #333; border-left: 6px solid var(--verde); border-radius: 14px; padding: 16px 18px; color: #cfcac0; }
+.ajuda-lista strong { color: var(--off); }
+.final .sub { color: var(--suave); font-size: 1.1rem; }
+@media (max-width: 1000px) {
+  .etapas { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px) {
+  .menu { display: none; }
+  .funil li { box-shadow: 4px 4px 0 var(--preto); }
+  .hero-grid .funil { order: 0; }
+}
+@media (max-width: 520px) {
+  .etapas { grid-template-columns: 1fr; }
+  .hero-acoes .btn { width: 100%; }
+}
+@media (max-width: 860px) {
+  .tres-passos { display: none; }
+  .doar .sub { margin-bottom: 18px; }
+  .garantias { border-top: 0; padding-top: 0; }
 }

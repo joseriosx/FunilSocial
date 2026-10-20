@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E-book grátis: Prato Cheio Piauiense | Funil Social</title>
-  <meta name="description" content="Baixe grátis o e-book Prato Cheio Piauiense: 50 receitas da nossa terra. Um projeto educativo de Teresina contra a fome que mostra, na prática, como funciona um funil de marketing.">
-  <meta property="og:title" content="Prato Cheio Piauiense: 50 receitas da nossa terra (grátis)">
-  <meta property="og:description" content="Receitas piauienses que enchem o prato. Baixe grátis e conheça o Funil Social.">
+  <title>Funil Social | Doações que chegam mais longe</title>
+  <meta name="description" content="Projeto de extensão de Teresina-PI que monta um funil de marketing de verdade, do post no Instagram à doação, e mostra cada passo para você aplicar no seu projeto local.">
+  <meta property="og:title" content="Funil Social: doações que chegam mais longe">
+  <meta property="og:description" content="Um funil de marketing de verdade, do post à doação, aberto para você copiar no seu projeto local.">
   <meta property="og:image" content="assets/og.jpg">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#000000">
@@ -23,115 +23,129 @@
   <div class="aviso">🎓 <strong>Projeto educativo.</strong> Nenhuma doação é cobrada de verdade.</div>
 
   <header class="topo">
-    <div class="wrap"><img src="assets/logo-h.png" alt="Funil Social" width="217" height="52"></div>
+    <div class="wrap topo-flex">
+      <a href="index.html"><img src="assets/logo-h.png" alt="Funil Social" width="217" height="52"></a>
+      <nav class="menu" aria-label="Seções">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#aprenda">O que você aprende</a>
+        <a href="#causa">A causa</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <!-- HERO + CAPTURA -->
+    <!-- HERO -->
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <span class="selo verde">E-book grátis · Teresina-PI</span>
-          <h1>50 receitas do Piauí que <span class="verde">enchem o prato</span></h1>
-          <p class="sub">Da Maria Isabel à cajuína caseira: o <strong>Prato Cheio Piauiense</strong> reúne receitas da nossa terra, com passo a passo simples e ingredientes que você acha no mercado.</p>
-          <ul class="lista-rapida">
-            <li>50 receitas em 6 categorias, do café à sobremesa</li>
-            <li>Selo "rende muito" nas que servem 8 pessoas ou mais</li>
-            <li>Feito para ler no celular</li>
-          </ul>
-
-          <div class="card" id="baixar">
-            <div class="abas" role="tablist" aria-label="Como você quer receber">
-              <button class="aba" role="tab" aria-selected="true" aria-controls="painel-email" id="aba-email" type="button">📧 Por e-mail</button>
-              <button class="aba" role="tab" aria-selected="false" aria-controls="painel-wa" id="aba-wa" type="button">💬 Por WhatsApp</button>
-            </div>
-
-            <form id="painel-email" role="tabpanel" aria-labelledby="aba-email" novalidate>
-              <label for="nome">Seu primeiro nome</label>
-              <input id="nome" name="NOME" type="text" autocomplete="given-name" required>
-
-              <label for="email">Seu melhor e-mail</label>
-              <input id="email" name="EMAIL" type="email" autocomplete="email" inputmode="email" required>
-
-              <!-- Campo armadilha contra robôs (o Brevo usa este nome) -->
-              <input class="hp" type="text" name="email_address_check" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-              <label class="consent">
-                <input type="checkbox" id="optin" name="OPT_IN" value="1" required>
-                <span>Aceito receber o e-book e mensagens do Funil Social por e-mail. Posso cancelar quando quiser. Li a <a href="privacidade.html" target="_blank">política de privacidade</a>.</span>
-              </label>
-
-              <p class="erro" id="erro" role="alert"></p>
-              <button class="btn btn-full" type="submit" id="enviar">Quero o e-book grátis</button>
-              <p class="miudo">Você baixa na hora e recebe uma cópia no e-mail.</p>
-            </form>
-
-            <div id="painel-wa" role="tabpanel" aria-labelledby="aba-wa" hidden>
-              <p>Mande um oi no nosso WhatsApp e a gente responde com o link do e-book.</p>
-              <a class="btn btn-full" id="btn-wa" data-wa="Oi! Quero o e-book Prato Cheio Piauiense 🍲" target="_blank" rel="noopener">Receber pelo WhatsApp</a>
-              <p class="miudo">Ao mandar a mensagem, você concorda em conversar com o Funil Social pelo WhatsApp. Veja a <a href="privacidade.html" target="_blank">política de privacidade</a>.</p>
-            </div>
+          <span class="selo verde">Projeto de extensão · Teresina-PI</span>
+          <h1>Doações que chegam <span class="verde">mais longe</span></h1>
+          <p class="sub">O Funil Social monta um funil de marketing <strong>de verdade</strong>, do post no Instagram até a doação, e abre cada etapa para você copiar no seu projeto local.</p>
+          <div class="hero-acoes">
+            <a class="btn" href="e-book.html" data-track="click_ebook_home">Começar pelo e-book grátis</a>
+            <a class="btn btn-ghost" href="#como-funciona">Ver como funciona</a>
           </div>
+          <p class="miudo">A doação no fim do funil é simulada: nada é cobrado.</p>
         </div>
 
-        <img class="capa" src="assets/capa-ebook.jpg" alt="Capa do e-book Prato Cheio Piauiense: 50 receitas da nossa terra" width="540" height="960">
-      </div>
-    </section>
-
-    <!-- O QUE TEM DENTRO -->
-    <section class="bloco escuro">
-      <div class="wrap">
-        <span class="selo verde">O que tem dentro</span>
-        <h2>Do cuscuz <span class="verde">à cajuína</span></h2>
-        <div class="grid-3">
-          <div class="item"><div class="num">16</div><h3>Pratos principais</h3><p>Maria Isabel, capote ao molho, carne de sol com macaxeira, arroz com pequi e mais.</p></div>
-          <div class="item"><div class="num">12</div><h3>Peixes e acompanhamentos</h3><p>Piau frito, peixada, baião de dois, quibebe de jerimum, "carne" de caju.</p></div>
-          <div class="item"><div class="num">22</div><h3>Café, doces e bebidas</h3><p>Cuscuz, bolo de puba, doce de buriti, paçoca de castanha, cajuína caseira.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- POR QUE EXISTE -->
-    <section class="bloco">
-      <div class="wrap hero-grid">
-        <div>
-          <span class="selo verde">Por que este e-book existe</span>
-          <h2>Comida boa é <span class="verde">para todo mundo</span></h2>
-          <p>O Funil Social é um projeto de extensão de Teresina que olha para a fome e para as famílias em situação de vulnerabilidade. Receita que rende bem é receita que dá para dividir.</p>
-          <p>Ao mesmo tempo, o projeto ensina marketing digital para quem tem um projeto local. Este e-book é a nossa <strong>isca digital</strong>: um presente útil que abre a conversa antes de qualquer pedido.</p>
-        </div>
-        <div class="item">
-          <h3>🎓 Projeto educativo</h3>
-          <p>No fim do funil existe uma página de doação, mas ela é uma <strong>simulação</strong>: nenhum valor é cobrado e nenhum dado de pagamento é pedido. A ideia é mostrar como cada etapa funciona.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- BASTIDOR -->
-    <section class="bloco escuro">
-      <div class="wrap">
-        <span class="selo verde">Bastidor</span>
-        <h2>Você está <span class="verde">dentro de um funil</span></h2>
-        <p>Esta página é a etapa 2. Repare: ela oferece algo de valor, pede só o necessário e explica o que acontece com os seus dados.</p>
-        <ol class="passos">
-          <li>Post no Instagram</li>
-          <li class="aqui">Página do e-book (você está aqui)</li>
-          <li>E-mail e WhatsApp automáticos</li>
-          <li>Doação simulada</li>
-          <li>Agradecimento e métricas</li>
+        <ol class="funil" aria-label="As 5 etapas do funil">
+          <li><span class="n">1</span>Post no Instagram</li>
+          <li><span class="n">2</span>E-book grátis</li>
+          <li><span class="n">3</span>E-mail e WhatsApp</li>
+          <li><span class="n">4</span>Doação simulada</li>
+          <li class="fim"><span class="n">5</span>Métricas</li>
         </ol>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="bloco">
-      <div class="wrap" style="max-width:760px">
-        <h2>Perguntas <span class="verde">rápidas</span></h2>
-        <details><summary>É grátis mesmo?</summary><p>Sim. Você só informa o nome e o e-mail, ou chama a gente no WhatsApp.</p></details>
-        <details><summary>Vou receber spam?</summary><p>Não. Enviamos o e-book e poucas mensagens do projeto. Todo e-mail tem um link para cancelar.</p></details>
-        <details><summary>As receitas têm fonte?</summary><p>Sim. Cada receita traz no rodapé o site ou a instituição de onde veio.</p></details>
-        <details><summary>A doação é de verdade?</summary><p>Não. É um projeto educativo e a página de doação é uma simulação. Nada é cobrado.</p></details>
-        <p style="margin-top:32px"><a class="btn" href="#baixar">Quero o e-book grátis</a></p>
+    <!-- COMO FUNCIONA -->
+    <section class="bloco escuro" id="como-funciona">
+      <div class="wrap">
+        <div class="cabeca">
+          <span class="selo verde">Como funciona</span>
+          <h2>Cinco etapas, <span class="verde">todas no ar</span></h2>
+          <p>Cada etapa tem um trabalho só. Clique e veja funcionando.</p>
+        </div>
+        <div class="etapas">
+          <a class="etapa" href="https://instagram.com/funil.social" target="_blank" rel="noopener" data-track="click_instagram">
+            <span class="n">1</span><span class="fase">Topo · atrair</span>
+            <h3>Post no Instagram</h3>
+            <p>Conteúdo útil sobre a causa, sem pedir nada. Ninguém doa para quem acabou de conhecer.</p>
+            <span class="ver">Ver o perfil →</span>
+          </a>
+          <a class="etapa" href="e-book.html">
+            <span class="n">2</span><span class="fase">Meio · converter</span>
+            <h3>E-book grátis</h3>
+            <p>50 receitas piauienses em troca do nome e do e-mail. É a isca digital que abre a conversa.</p>
+            <span class="ver">Pegar o e-book →</span>
+          </a>
+          <a class="etapa" data-wa="Oi! Vim pelo site do Funil Social." target="_blank" rel="noopener" data-track="click_whatsapp" data-fb="Contact">
+            <span class="n">3</span><span class="fase">Meio · nutrir</span>
+            <h3>E-mail e WhatsApp</h3>
+            <p>Mensagens automáticas entregam o e-book e contam os bastidores do projeto.</p>
+            <span class="ver">Mandar um oi →</span>
+          </a>
+          <a class="etapa" href="doar.html">
+            <span class="n">4</span><span class="fase">Fundo · pedir</span>
+            <h3>Doação simulada</h3>
+            <p>Só agora vem o pedido, numa página com duas versões em teste A/B. Nada é cobrado.</p>
+            <span class="ver">Ver a doação →</span>
+          </a>
+          <div class="etapa">
+            <span class="n">5</span><span class="fase">Encantar · medir</span>
+            <h3>Agradecimento e métricas</h3>
+            <p>Um obrigado na hora e os números de cada etapa, mostrados com transparência.</p>
+            <span class="ver mudo">Na apresentação</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- O QUE VOCÊ APRENDE -->
+    <section class="bloco" id="aprenda">
+      <div class="wrap">
+        <div class="cabeca">
+          <span class="selo verde">O que você aprende</span>
+          <h2>Técnicas para o seu <span class="verde">projeto local</span></h2>
+          <p>Tudo com ferramentas gratuitas, do jeito que dá para repetir numa ONG, numa igreja ou num negócio do bairro.</p>
+        </div>
+        <div class="grid-3 tecnicas">
+          <div class="item"><span class="ico">01</span><h3>Funil de inbound</h3><p>Topo, meio e fundo: o que dizer para quem ainda não te conhece e para quem já confia.</p></div>
+          <div class="item"><span class="ico">02</span><h3>Conteúdo orgânico</h3><p>Posts e Reels que atraem sem anúncio pago.</p></div>
+          <div class="item"><span class="ico">03</span><h3>Isca digital e landing page</h3><p>Um presente útil e uma página que pede só o necessário.</p></div>
+          <div class="item"><span class="ico">04</span><h3>Automação</h3><p>E-mail e WhatsApp Business que respondem sozinhos.</p></div>
+          <div class="item"><span class="ico">05</span><h3>Teste A/B e métricas</h3><p>Duas versões da mesma página e os números para escolher a melhor.</p></div>
+          <div class="item"><span class="ico">06</span><h3>LGPD na prática</h3><p>Consentimento claro, política de privacidade e métricas só com permissão.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A CAUSA -->
+    <section class="bloco escuro" id="causa">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="selo verde">A causa</span>
+          <h2>Prato cheio <span class="verde">para todo mundo</span></h2>
+          <p>Escolhemos a fome como tema porque ela está perto: em Teresina, muitas famílias em situação de vulnerabilidade ainda não sabem se vai ter comida amanhã.</p>
+          <p>A doação deste funil é simulada, mas a fome não é. Se o projeto te tocou, ajude quem já faz esse trabalho na sua cidade.</p>
+        </div>
+        <ul class="ajuda-lista">
+          <li><strong>Doe alimentos</strong> para um banco de alimentos, uma cozinha solidária ou uma ação do seu bairro. Pergunte antes o que estão precisando.</li>
+          <li><strong>Doe o seu tempo</strong> como voluntário.</li>
+          <li><strong>Compartilhe</strong> quem ajuda de verdade.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CHAMADA FINAL -->
+    <section class="bloco final">
+      <div class="wrap centro">
+        <h2>Entre no funil e veja <span class="verde">por dentro</span></h2>
+        <p class="sub">Comece pelo e-book. Em poucos minutos você passa por todas as etapas.</p>
+        <div class="hero-acoes centro-flex">
+          <a class="btn" href="e-book.html" data-track="click_ebook_home">Quero o e-book grátis</a>
+          <a class="btn btn-ghost" href="https://instagram.com/funil.social" target="_blank" rel="noopener" data-track="click_instagram">Seguir @funil.social</a>
+        </div>
       </div>
     </section>
   </main>
@@ -139,8 +153,10 @@
   <footer>
     <div class="wrap">
       <img src="assets/logo-h-claro.png" alt="Funil Social" width="184" height="44">
-      <p><strong>Sobre o Funil Social.</strong> Um projeto de extensão que ensina técnicas de marketing digital a quem tem projetos locais. Para isso, construímos um funil real: posts no Instagram, esta página, mensagens automáticas e uma página de doação. <strong>A doação é simulada:</strong> nada é cobrado e nenhum dado de pagamento é pedido.</p>
+      <p><strong>Sobre o Funil Social.</strong> Um projeto de extensão que ensina técnicas de marketing digital a quem tem projetos locais. <strong>A doação é simulada:</strong> nada é cobrado e nenhum dado de pagamento é pedido.</p>
       <div class="links">
+        <a href="e-book.html">E-book grátis</a>
+        <a href="doar.html">Doação simulada</a>
         <a href="privacidade.html">Política de privacidade</a>
         <a data-track="click_instagram" href="https://instagram.com/funil.social" target="_blank" rel="noopener">Instagram @funil.social</a>
         <a data-track="click_whatsapp" data-fb="Contact" data-wa="Oi! Vim pelo site do Funil Social." target="_blank" rel="noopener">WhatsApp</a>
@@ -148,62 +164,5 @@
       <p>Teresina-PI · Doações que chegam mais longe.</p>
     </div>
   </footer>
-
-  <script>
-  (function () {
-    var C = window.FS_CONFIG;
-
-    // Abas e-mail / WhatsApp
-    var abas = { email: document.getElementById("aba-email"), wa: document.getElementById("aba-wa") };
-    var paineis = { email: document.getElementById("painel-email"), wa: document.getElementById("painel-wa") };
-    function abrir(qual) {
-      Object.keys(abas).forEach(function (k) {
-        abas[k].setAttribute("aria-selected", k === qual);
-        paineis[k].hidden = k !== qual;
-      });
-    }
-    abas.email.onclick = function () { abrir("email"); };
-    abas.wa.onclick = function () { abrir("wa"); };
-
-    // Lead pelo WhatsApp
-    document.getElementById("btn-wa").addEventListener("click", function () {
-      fsTrack("generate_lead", { method: "whatsapp" }, "Lead");
-    });
-
-    // Lead por e-mail
-    var form = paineis.email, erro = document.getElementById("erro"), botao = document.getElementById("enviar");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      erro.textContent = "";
-      var nome = form.NOME.value.trim(), email = form.EMAIL.value.trim();
-      if (!nome) { erro.textContent = "Coloque o seu nome."; form.NOME.focus(); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { erro.textContent = "Confira o seu e-mail."; form.EMAIL.focus(); return; }
-      if (!form.OPT_IN.checked) { erro.textContent = "Marque a caixa de consentimento para receber o e-book."; return; }
-      if (form.email_address_check.value) return; // robô
-
-      botao.disabled = true;
-      botao.textContent = "Enviando...";
-
-      var ir = function () {
-        fsTrack("generate_lead", { method: "email" }, "Lead");
-        setTimeout(function () { location.href = "obrigado.html?nome=" + encodeURIComponent(nome); }, 300);
-      };
-
-      if (!C.BREVO_FORM_ACTION) { console.info("[demo] Brevo não configurado: lead não foi salvo."); ir(); return; }
-
-      var dados = new FormData(form);
-      dados.set("locale", "pt");
-      dados.set("html_type", "simple");
-      // O Brevo não devolve CORS; "no-cors" envia e segue em frente.
-      fetch(C.BREVO_FORM_ACTION, { method: "POST", body: dados, mode: "no-cors" })
-        .then(ir)
-        .catch(function () {
-          botao.disabled = false;
-          botao.textContent = "Quero o e-book grátis";
-          erro.textContent = "Não conseguimos enviar agora. Tente de novo ou peça pelo WhatsApp.";
-        });
-    });
-  })();
-  </script>
 </body>
 </html>
