@@ -36,8 +36,9 @@
 
           <ol class="tres-passos" aria-label="Como funciona">
             <li><span class="n">1</span><div><strong>Escolha a doação</strong><span>Uma das opções ao lado ou o valor que quiser.</span></div></li>
-            <li><span class="n">2</span><div><strong>Escolha PIX ou cartão</strong><span>Você vê como seria pagar, sem digitar nenhum dado.</span></div></li>
-            <li><span class="n">3</span><div><strong>Receba o agradecimento</strong><span>E um jeito real de ajudar na sua cidade.</span></div></li>
+            <li><span class="n">2</span><div><strong>Diga para quem agradecer</strong><span>Só o seu nome e e-mail, nada de pagamento.</span></div></li>
+            <li><span class="n">3</span><div><strong>Escolha PIX ou cartão</strong><span>Você vê como seria pagar, sem digitar nenhum dado.</span></div></li>
+            <li><span class="n">4</span><div><strong>Receba o agradecimento</strong><span>Na tela e no seu e-mail, com um jeito real de ajudar.</span></div></li>
           </ol>
 
           <ul class="garantias">
@@ -88,10 +89,34 @@
             <button class="btn btn-full" type="submit" id="quero-doar">Quero doar</button>
           </form>
 
-          <!-- PASSO 2: forma de pagamento (simulada) -->
-          <div id="passo2" hidden>
-            <h2 class="card-titulo">2. Como você quer doar?</h2>
-            <p class="resumo">Sua doação: <strong id="resumo"></strong> <button type="button" class="link" id="trocar">trocar</button></p>
+          <!-- PASSO 2: nome e e-mail para o agradecimento -->
+          <form id="passo2" novalidate hidden>
+            <h2 class="card-titulo">2. Para quem agradecer?</h2>
+            <p class="resumo">Sua doação: <strong class="resumo-valor"></strong> <button type="button" class="link" data-trocar>trocar</button></p>
+
+            <label for="nome">Seu primeiro nome</label>
+            <input id="nome" name="NOME" type="text" autocomplete="given-name" required>
+
+            <label for="email">Seu melhor e-mail</label>
+            <input id="email" name="EMAIL" type="email" autocomplete="email" inputmode="email" required>
+
+            <!-- Campo armadilha contra robôs (o Brevo usa este nome) -->
+            <input class="hp" type="text" name="email_address_check" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <label class="consent">
+              <input type="checkbox" id="optin" name="OPT_IN" value="1" required>
+              <span>Aceito receber o e-mail de agradecimento e mensagens do Funil Social. Posso cancelar quando quiser. Li a <a href="privacidade.html" target="_blank">política de privacidade</a>.</span>
+            </label>
+
+            <p class="erro" id="erro2" role="alert"></p>
+            <button class="btn btn-full" type="submit">Continuar</button>
+            <p class="miudo">Você recebe o agradecimento por e-mail quando concluir a simulação.</p>
+          </form>
+
+          <!-- PASSO 3: forma de pagamento (simulada) -->
+          <div id="passo3" hidden>
+            <h2 class="card-titulo">3. Como você quer doar?</h2>
+            <p class="resumo">Sua doação: <strong class="resumo-valor"></strong> <button type="button" class="link" data-trocar>trocar</button></p>
 
             <p class="alerta">⚠️ <strong>Simulação:</strong> nenhum valor será cobrado. Clique para ver como funciona o fim do funil.</p>
 
@@ -140,7 +165,7 @@
           <li>Página do e-book</li>
           <li>E-mail e WhatsApp automáticos</li>
           <li class="aqui">Doação simulada (você está aqui)</li>
-          <li>Agradecimento e métricas</li>
+          <li>Agradecimento na tela e por e-mail, e métricas</li>
         </ol>
       </div>
     </section>
@@ -149,6 +174,7 @@
       <div class="wrap" style="max-width:760px">
         <h2>Perguntas <span class="verde">rápidas</span></h2>
         <details><summary>Vou pagar alguma coisa?</summary><p>Não. É um projeto educativo e esta página é uma simulação. Os botões de PIX e cartão não processam pagamentos e não pedem dados bancários, de cartão ou CPF.</p></details>
+        <details><summary>Por que vocês pedem meu nome e e-mail?</summary><p>Só para mandar o e-mail de agradecimento, que também faz parte do funil. Nenhum dado de pagamento é pedido, e você pode cancelar o recebimento quando quiser.</p></details>
         <details><summary>Então por que essa página existe?</summary><p>Para mostrar, na prática, como funciona a última etapa de um funil de doação, e testar qual versão da página convence mais.</p></details>
         <details><summary>Quero ajudar de verdade. Como faço?</summary><p>Procure um banco de alimentos, uma cozinha solidária ou uma ação da sua igreja ou do seu bairro em Teresina. Doar alimentos e tempo como voluntário faz muita diferença.</p></details>
       </div>
@@ -180,7 +206,13 @@
     var form = document.getElementById("passo1"), erro = document.getElementById("erro1");
     var livre = document.getElementById("livre"), campo = document.getElementById("valor-livre");
     var impacto = document.getElementById("impacto");
-    var escolha = null;
+    var escolha = null, contato = null;
+    var passo2 = document.getElementById("passo2"), passo3 = document.getElementById("passo3");
+    var erro2 = document.getElementById("erro2");
+    function mostra(qual) {
+      form.hidden = qual !== 1; passo2.hidden = qual !== 2; passo3.hidden = qual !== 3;
+      document.querySelector(".card-doar").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
 
     function reais(n) { return "R$ " + n.toLocaleString("pt-BR"); }
     function lerLivre() { var n = parseInt(campo.value.replace(/\D/g, ""), 10); return isNaN(n) ? 0 : n; }
@@ -216,16 +248,37 @@
       if (r.value === "livre" && valor < MINIMO) { erro.textContent = "O valor mínimo é R$ 5."; campo.focus(); return; }
       escolha = { item: r.value, valor: valor };
       fsTrack("begin_checkout", { currency: "BRL", value: valor, item_name: r.value });
-      document.getElementById("resumo").textContent = descreve(r.value, valor);
-      form.hidden = true;
-      document.getElementById("passo2").hidden = false;
-      document.querySelector(".card-doar").scrollIntoView({ behavior: "smooth", block: "start" });
+      document.querySelectorAll(".resumo-valor").forEach(function (el) { el.textContent = descreve(r.value, valor); });
+      mostra(contato ? 3 : 2);
+      if (!contato) passo2.NOME.focus();
     });
 
-    document.getElementById("trocar").onclick = function () {
-      document.getElementById("passo2").hidden = true;
-      form.hidden = false;
-    };
+    document.querySelectorAll("[data-trocar]").forEach(function (b) { b.onclick = function () { mostra(1); }; });
+
+    // Nome e e-mail: só guardamos aqui; o envio ao Brevo acontece quando a pessoa conclui a simulação.
+    passo2.addEventListener("submit", function (e) {
+      e.preventDefault();
+      erro2.textContent = "";
+      var nome = passo2.NOME.value.trim(), email = passo2.EMAIL.value.trim();
+      if (!nome) { erro2.textContent = "Coloque o seu nome."; passo2.NOME.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { erro2.textContent = "Confira o seu e-mail."; passo2.EMAIL.focus(); return; }
+      if (!passo2.OPT_IN.checked) { erro2.textContent = "Marque a caixa de consentimento para receber o agradecimento."; return; }
+      contato = { nome: nome, robo: !!passo2.email_address_check.value };
+      fsTrack("doacao_contato", { currency: "BRL", value: escolha.valor, item_name: escolha.item });
+      mostra(3);
+    });
+
+    // Lista "Doadores demo" no Brevo, cuja automação manda o e-mail de agradecimento.
+    function enviaContato() {
+      var C = window.FS_CONFIG || {};
+      if (contato.robo) return Promise.resolve();
+      if (!C.BREVO_DOACAO_ACTION) { console.info("[demo] Brevo da doação não configurado: contato não foi salvo."); return Promise.resolve(); }
+      var dados = new FormData(passo2);
+      dados.set("locale", "pt");
+      dados.set("html_type", "simple");
+      // O Brevo não devolve CORS; "no-cors" envia e segue em frente.
+      return fetch(C.BREVO_DOACAO_ACTION, { method: "POST", body: dados, mode: "no-cors" }).catch(function () {});
+    }
 
     // Abas PIX / cartão
     var abas = { pix: document.getElementById("aba-pix"), cartao: document.getElementById("aba-cartao") };
@@ -264,9 +317,11 @@
         b.disabled = true;
         b.textContent = "Processando a simulação...";
         fsTrack("doacao_simulada", { currency: "BRL", value: escolha.valor, item_name: escolha.item, payment_type: metodo });
-        setTimeout(function () {
-          location.href = "obrigado-doacao.html?item=" + escolha.item + "&valor=" + escolha.valor + "&metodo=" + metodo;
-        }, 900);
+        var espera = new Promise(function (ok) { setTimeout(ok, 900); });
+        Promise.all([enviaContato(), espera]).then(function () {
+          location.href = "obrigado-doacao.html?item=" + escolha.item + "&valor=" + escolha.valor + "&metodo=" + metodo +
+            "&nome=" + encodeURIComponent(contato.nome);
+        });
       });
     });
   })();

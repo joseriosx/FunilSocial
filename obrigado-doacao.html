@@ -27,6 +27,7 @@
       <span class="selo verde">Funil completo</span>
       <h1>Obrigado por <span class="verde">chegar até aqui!</span></h1>
       <p class="sub" id="frase">Sua doação simulada foi registrada. Nenhum valor foi cobrado.</p>
+      <p class="miudo" id="email-aviso" hidden>📧 Mandamos um agradecimento para o seu e-mail. Se não aparecer, olhe o spam ou a aba Promoções.</p>
 
       <div class="acoes">
         <a class="btn" data-wa="Oi! Fiz a doação simulada no Funil Social 💚" data-track="click_whatsapp" data-fb="Contact" target="_blank" rel="noopener">💬 Contar no nosso WhatsApp</a>
@@ -70,6 +71,12 @@
     (function () {
       var q = new URLSearchParams(location.search);
       var item = q.get("item"), valor = parseInt(q.get("valor"), 10), metodo = q.get("metodo");
+      var nome = (q.get("nome") || "").trim().split(/\s+/)[0].slice(0, 30);
+      if (nome) {
+        document.querySelector("h1").innerHTML = 'Obrigado, <span class="verde"></span>!';
+        document.querySelector("h1 .verde").textContent = nome;
+        if ((window.FS_CONFIG || {}).BREVO_DOACAO_ACTION) document.getElementById("email-aviso").hidden = false;
+      }
       if (!valor || valor < 5) return;
       var oQue = item === "marmita" ? "1 marmita, um almoço quentinho"
         : item === "cesta" ? "1 cesta básica para uma família"
